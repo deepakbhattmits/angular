@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+</head>
+<body class='MP3PageBody' ng-controller='myCtrlMp3'>
+<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+<div class='container-fluid'>
+<div class='row'>
+    <input class='center-block my_search' type='text' ng-model='name' placeholder='Search Product here....' />
+<div class='col-sm-3 range-slider'>
+    <div data-ng-controller="AppController">
+        <section class="row">
+            <div class="custom_price pull-left">
+                <h3>Select Price Range</h3>
+                <div data-range-slider
+                     data-floor="100"
+                     data-ceiling="1000"
+                     data-step="1"
+                     data-precision="2"
+                     data-highlight="left"
+                     data-ng-model-low="items[1].value"
+                     data-ng-model-high="items[2].value"
+                     ng-click="getRange(items[1].value,items[2].value)" >
+                </div>
+                <p class='pull-left'>Min: {{items[1].value}}</p>
+                <p class='pull-right'>Max: {{items[2].value}}</p>
+            </div>
+        </section>
+    </div>
+    </div>
+    <div class='col-sm-9'>
+        <div class='selacted_range_products'>
+           <ul class='my_Grid'>
+            <li class='my_product' ng-repeat='x in items | filter : name'>
+                   <a class='product-links' href='javascript:void(0);'>
+                        <ul class='product-details'>
+                            <li>
+                                <span ng-bind='( x.name | uppercase )'></span>
+                            </li>
+                            <li>
+                                <span>Stock Is : </span>
+                                <span ng-bind='( x.stock )'></span>
+                            </li>
+                            <li>
+                                <span>Price Is : </span>
+                                <span ng-bind='( x.price )'></span>
+                            </li>
+                            <li ng-class="({{x.stock}} != 0 ? 'inn':'outt')">
+                                <input class='cart-input' type='number' ng-model='quantity' title='Add Quantity' min='1' name='quantity' ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" />
+                                <span class='cart-buttoni' ng-class="({{x.stock}} != 0 ? 'in':'out')" ng-click='cartbutton(x.id,x.name,quantity,x.price,x.stock)' ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()"></span>
+                            </li>
+                            <li>
+                            <div ng-show='showup' class='updatedPrice'>
+                                <span>Updated Price : </span>
+                                <span ng-init='quantity = 1'>{{ x.price * quantity }}</span>
+                            </div>
+                            </li>
+                        </ul>
+                   </a>
+            </li>
+            </ul>
+        </div>
+         <span ng-show='cmsg' class=successclose ng-click='closeme()'>X</span>
+         <div  ng-show='cartmsg' class='success'>
+             <span ng-show='smsg' ng-bind='successmsg'></span>
+             <span ng-show='emsg' ng-bind='errormsg'></span>
+         </div>
+    </div>
+
+
+</div>
+</div>
+</body>
+</html>

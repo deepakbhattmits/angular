@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='HomePageBody'>
+	<div class=''>
+		<div class='col-sm-4 col-xs-3 text-left'>
+			<h4 class='my_page_head' ng-bind='( page_name | uppercase )'></h4>
+		</div>
+		<div class='col-sm-8 col-xs-9 text-left'>
+			<h5 class='my_home_name' ng-bind='( userName | uppercase )'></h5>
+		</div>
+	</div>
+<div class="container">
+	<div class='row'>
+		<!-- new carousel b-->
+			<div id="slides_control" class='carousasl-custom'>
+				<div>
+					<carousel interval="myInterval">
+						<slide ng-repeat="slide in slides" active="slide.active">
+							<img ng-src="{{slide.image}}">
+							<div class="carousel-caption">
+								<h4>Slide : {{$index+1}}</h4>
+							</div>
+						</slide>
+					</carousel>
+				</div>
+			</div>
+		<!-- new carousel e-->
+	</div>
+	<div class='row'>
+			<!-- parallax start -->
+			<div class="bgimg-1">
+				<div class="caption">
+					<span class="border" ng-bind='( userNamehome | uppercase )'></span>
+				</div>
+			</div>
+			<div class='firsthead'>
+				<h3 class='text-center' ng-bind='(userContenthead | capitalize )'></h3>
+				<p ng-bind='(userContent | capitalize )'></p>
+			</div>
+			<div class="bgimg-2">
+				<div class="caption">
+					<span class="border firstcontent" ng-bind='(userContenthead2 | capitalize )'></span>
+				</div>
+			</div>
+			<div class='secondhead'>
+				<div class='secondcontent'>
+					<p ng-bind='( userContent2 | capitalize)'></p>
+				</div>
+			</div>
+			<div class="bgimg-3">
+				<div class="caption">
+					<span class="border thirdhead" ng-bind='(userContenthead3 | capitalize )'></span>
+				</div>
+			</div>
+			<div class='thirddiv'>
+				<div class='thirdcontent' style="">
+					<p ng-bind='( userContent3 | capitalize)'></p>
+				</div>
+			</div>
+			<div class="bgimg-1">
+				<div class="caption">
+					<span class="border">COOL!</span>
+				</div>
+			</div>
+	<!-- parallax start -->
+	</div>
+</div>
+</body>
+</html>

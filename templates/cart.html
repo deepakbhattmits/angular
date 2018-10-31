@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='GallaryPageBody'>
+<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+<div class='container-fluid'>
+<div class='col-sm-3 col-xs-12'>
+    <div class='form-group'>
+    <input ng-model="query" id="search" class="form-control" placeholder="Filter text">
+ </div><div class='form-group'>
+    <select ng-model="pageSize" id="pageSize" class="form-control">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+     </select>
+     </div>
+     <div class='form-group'>
+         <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
+    </div>
+</div>
+    <div class='col-sm-9 col-xs-12'>
+       <div class='table-responsive'>
+    <table class='table'>
+        <tr>
+            <th style='padding:10px;' ng-bind='(cart_id | uppercase)'></th>
+            <th style='padding:10px;' ng-bind='(cart_ProductName | uppercase)'></th>
+            <th style='padding:10px;' ng-bind='(cart_ProductPrice | uppercase)'></th>
+            <th colspan='2' style='padding:10px;' ng-bind='(cart_ProductQuantity | uppercase)'></th>
+            <th style='padding:10px;' ng-bind='(cart_UpdatedPrice | uppercase)'></th>
+            <th style='padding:10px;' ng-bind='(cart_buy | uppercase)'></th>
+            <th style='padding:10px;' ng-bind='(cart_remove | uppercase)'></th>
+            <td colspan='6' ng-bind='(mycart_empty | uppercase )'></td>
+        </tr>
+        <tr ng-repeat='cart in mycart | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
+            <td style='padding:10px;' ng-bind='(cart.id)'></td>
+            <td style='padding:10px;' ng-bind='(cart.name | uppercase)'></td>
+            <td style='padding:10px;' ng-bind='(cart.price | uppercase)' ng-modal='price'></td>
+            <td colspan='2' style='padding:10px;' ng-bind='( cart.qty | uppercase )' >
+            </td>
+            <td style='padding:10px;' ng-bind='(cart.upprice | uppercase)'></td>
+             <td style='padding:10px;' ><button ng-click='cart_prodbuy_btn(cart.id,cart.name,cart.price,cart.qty,cart.upprice)'>BUY</button></td>
+            <td style='padding:10px;' ><button ng-click='cart_remove_btn(cart.id)'>Remove</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</div>
+</body>
+</html>

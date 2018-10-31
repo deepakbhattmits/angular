@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='contactPageBody'>
+    <div class='col-xs-12'>
+        <h3 class='my_home_name' ng-bind='( page_name | uppercase )'></h3>
+    </div>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-7'>
+        <div class='map'>
+            <div id="map-canvas"></div>
+        </div>
+
+        </div>
+        <div class='col-sm-5'>
+            <form ng-submit="submitFormcntc()" novalidate class="css-form">
+                <div class="form-group">
+                    <label for="inputName" ng-bind='(name | uppercase)'></label>
+                    <input type="name" class="form-control" id="inputName" placeholder="Name" ng-hide="success" ng-animate="{hide:'example-hide'}" ng-model="user.username" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" ng-bind='(email | uppercase)'></label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="xyz@xyz.com" ng-model="user.useremail" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputEnquiry" ng-bind='(enq | uppercase)'></label>
+                    <textarea rows='5' class="form-control" id="inputEnquiry" placeholder="" style="resize:none" ng-model="user.userenq" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary send-enquiry-btn" ng-model="user.sendenq">Send</button>
+                    <span class='success-enq' ng-bind='successmsg'></span>
+                    <span class='error-enq' ng-bind='errormsg'></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

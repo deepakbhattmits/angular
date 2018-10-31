@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='ClipsPageBody'>
+<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+<div class='container'>
+	<div class='row'>
+		<div class='col-sm-3 col-xs-12'>
+			<div ng-init="count=1;inactive=false">
+				<a ng-click="inactive = !inactive" href="">Toggle Active</a>
+				Disable={{inactive}}
+				<br><input type="number" ng-disabled="inactive" ng-model="count">
+				<br><a ng-click="inactive || (count=count + 1)" href="" style="">click to Increase count</a> {{count}}
+			</div>
+			<div ng-init='checked=false'>
+				<h4>Click me to Disable Button & Link: <input type="checkbox" ng-model="checked"></h4>
+				<a href="" ng-click=" checked || (anchorClicks=anchorClicks + 1)">ANCHOR</a>
+				<button ng-disabled="checked" ng-click="buttonClicks=buttonClicks+1">BUTTON</button>
+				<hr />
+				<p>Anchor Clicks: {{anchorClicks}}</p>
+				<p>Button Clicks: {{buttonClicks}}</p>
+			</div>
+		</div>
+		<div class='col-sm-9 col-xs-12'>
+				<div class='row color-1'>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponcenter"><img class="img-responsive" src="img/coupon/couponcenter.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="Couponclick"><img class="img-responsive" src="img/coupon/Couponclick.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="coupondaddy"><img class="img-responsive" src="img/coupon/coupondaddy.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="coupondekho"><img class="img-responsive" src="img/coupon/coupondekho.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponhaat"><img class="img-responsive" src="img/coupon/couponhaat.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="Languor"><img class="img-responsive" src="img/coupon/couponkhojo.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponkhojo"><img class="img-responsive" src="img/coupon/couponkoz.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponmama"><img class="img-responsive" src="img/coupon/couponmama.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponraja"><img class="img-responsive" src="img/coupon/couponraja.png"></span></a>
+					</div>
+					<div class='col-sm-3 col-xs-12'>
+						<a class='cl-effect-20' href="#cl-effect-20"><span data-hover="couponrani"><img class="img-responsive" src="img/coupon/couponrani.png"></span></a>
+					</div>
+				</div>
+		</div>
+	</div>
+</body>
+</html>

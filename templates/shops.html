@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='ShopsPageBody'>
+<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+<div class='database_ajax'>
+	<span id='my_add_btn' ng-bind='(add_new | uppercase)' ng-click='my_popup_show()'></span>
+	<div ng-show='my_popup' id='popup'>
+	    <div id='popup_cancel' ng-click='my_popup_hide()'>&times;</div>
+	 	<form class='my_add_data' ng-submit="submitForm()">
+	         <div class="form-group">
+                <div class='col-sm-3'>
+					<span ng-bind='(first_name | uppercase)'></span>
+				</div>
+				<div class='col-sm-9'>
+					<input class='fn form-control' type='text' ng-model="user.fn" required/>
+					<span ng-bind='errorfName'></span>
+					<!-- <ul ng-repeat='exists in arr_name | filter:user.fn'>
+						<li ng-bind='exists'></li>
+					</ul> -->
+				</div>
+
+	       </div>
+	        <div class="form-group">
+                    <div class='col-sm-3'>
+	        	<span ng-bind='(last_name | uppercase)'></span>
+	        	  </div>
+			<div class='col-sm-9 '>
+	        	<input class='ln form-control' type='text' ng-model="user.ln" required/>
+	        	<span ng-bind='errorlName'></span>
+
+	       </div>
+	         </div>
+	        <div class="form-group">
+                    <div class='col-sm-3'>
+	        	<span ng-bind='(home_town| uppercase)'></span>
+	        	</div>
+	        		<div class='col-sm-9'>
+	        	<input class='ht form-control' type='text' ng-model="user.ht" required/>
+	        	<span ng-bind='errortown'></span>
+	         </div>
+	          </div>
+	        <div class="form-group">
+                    <div class='col-sm-3'>
+	        	<span ng-bind='(job | uppercase)'></span>
+	        	</div>
+	        		<div class='col-sm-9'>
+	        	<input class='job form-control' type='text' ng-model="user.job" required/>
+	        	<span ng-bind='errorjob'></span>
+	          </div>
+	           </div>
+	        <div class="form-group">
+                    <div class='col-sm-3'>
+	        	<span ng-bind='(age | uppercase)'></span>
+	        	</div>
+	        	<div class='col-sm-9'>
+	        	<input class='age form-control' type='text' ng-model="user.age" maxlength='3' required/>
+	        	<span ng-bind='errorage'></span>
+	   		  </div>
+	   		   </div>
+	        <div class="form-group">
+                    <div class='col-sm-12'>
+	        	<button ng-bind='( submit_data | uppercase)' type="submit" class="my_add_submit_btn"></button>
+	          </div>
+	        </div>
+	        <div class="form-group">
+                <div class='col-sm-12'>
+	        		<p><span ng-bind='successmsg'></span></p>
+	        	</div>
+	        </div>
+	    </form>
+
+	</div>
+	<div ng-show='my_cover' id='cover' ></div>
+	<select class='users' ng-model='x' ng-change='showMe(x)'>
+		<option ng-bind='(select_name | uppercase)'></option>
+		<option ng-repeat='x in mydata' >{{ x | uppercase}}</option>
+	</select>
+	<div class='my_data table-responsive'>
+	<table class='table'>
+		<tr >
+			<th ng-bind='(table_id | uppercase)'></th>
+			<th ng-bind='(table_firstname | uppercase)'></th>
+			<th ng-bind='(table_lastname | uppercase)'></th>
+			<th ng-bind='(table_hometown | uppercase)'></th>
+			<th ng-bind='(table_job | uppercase)'></th>
+			<th ng-bind='(table_age | uppercase)'></th>
+		</tr>
+		<tr ng-repeat='item in items'>
+			<td ng-bind='(item.id)'></td>
+			<td ng-bind='(item.FirstName | uppercase)'></td>
+			<td ng-bind='(item.LastName | uppercase)'></td>
+			<td ng-bind='(item.HomeTown | uppercase)'></td>
+			<td ng-bind='(item.Job | uppercase)'></td>
+			<td ng-bind='(item.Age)'></td>
+		</tr>
+	</table>
+	</div>
+
+</div>
+</body>
+</html>

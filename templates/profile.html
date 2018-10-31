@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+</head>
+<body class='ProfilePageBody'>
+<div class='col-xs-12'>
+	<h3 class='my_home_name' ng-bind='( page_name | uppercase )'></h3>
+</div>
+
+<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+	<div class="pull-left">
+			<p> Time is {{ timee }}</p>
+			<p> Date is {{ daate }}</p>
+			<p>Enter KeyWord to Search <input type="text" ng-model="name" placeholder="eg. name"></p>
+			<ul>
+			  <li ng-repeat="x in names | orderBy:'state' | filter:name " class="animated-item">
+				 {{ x.name | uppercase }} , {{ x.state | uppercase }}
+			  </li>
+			</ul>
+			<button ng-click="removeLastName()">Remove last</button>
+	</div>
+</div>
+<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+	<p>Enter KeyWord to Search <input ng-model="filterText" placeholder="eg. name"/></p>
+    <ul>
+        <li ng-repeat="color in colors | filter: filterText" ng-style="{'color': '{{color}}'}" class="animated-item">{{color}}</li>
+    </ul>
+
+    <button ng-click="removeLast()">Remove last</button>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+	<button ng-click="showme = !showme">Show or Hide</button>
+		<div ng-show="showme" class="boxme">
+			<h2>Box to Show and Hide</h2>
+			<p>Show and hide this box using animate.css the angularway!</p>
+		</div>
+</div>
+<div class="row">
+  <audio controls>
+    <source src="audio/horse.ogg" type="audio/ogg">
+    <source src="audio/horse.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+</div>
+
+
+</body>
+</html>
+
+
+<style>
+.boxme {
+	background-color: #444;
+	color: #fff;
+	padding: 10px;
+	box-shadow: 0 0 10px #000;
+	margin: 5px;
+	border-radius: 5px;
+}
+.boxme.ng-hide-add {
+    -webkit-animation: fadeOutLeftBig 0.4s;
+    display: block!important;
+}
+.boxme.ng-hide-remove {
+    -webkit-animation: fadeInLeftBig 0.4s;
+}
+
+
+
+.animated-item {
+    font-size: 20px;
+    line-height:30px;
+}
+.animated-item.ng-move, .animated-item.ng-enter, .animated-item.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+.animated-item.ng-leave.ng-leave-active,
+.animated-item.ng-move,
+.animated-item.ng-enter {
+    opacity:0;
+    max-height:0;
+}
+.animated-item.ng-leave,
+.animated-item.ng-move.ng-move-active,
+.animated-item.ng-enter.ng-enter-active {
+    opacity:1;
+    max-height:30px;
+}
+
+
+
+</style>
