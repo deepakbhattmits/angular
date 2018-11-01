@@ -28,7 +28,7 @@ app.controller('myCtrlShop', function($scope,$http) {
             $scope.user = null;
         }
     };
-    $http.get("all_ajax.php").then(function(response) {
+    $http.get("api/all_ajax.php").then(function(response) {
         // console.log(response.data.FirstName);
         $scope.mydata = response.data.student;
     });
@@ -42,7 +42,7 @@ app.controller('myCtrlShop', function($scope,$http) {
         $scope.table_age        = 'age';
         $scope.table_edit       = 'edit';
         $scope.table_delete     = 'delete';
-        $http({url: 'ajax_search.php',method: "POST",
+        $http({url: 'api/ajax_search.php',method: "POST",
             data: {FirstName:data_f}
         })
         .then(function(response) {
@@ -55,7 +55,7 @@ app.controller('myCtrlShop', function($scope,$http) {
     }
    $scope.submitForm = function() {
         //// console.log($scope.user);
-        $http.get("all_ajax.php").then(function(response) {
+        $http.get("api/all_ajax.php").then(function(response) {
             //$scope.arr_name = response.data;
             for(i=0;i<=response.data.length;i++){
                 // console.log(response.data[i]);
@@ -66,14 +66,14 @@ app.controller('myCtrlShop', function($scope,$http) {
                     return false;
                     }
                 }
-             $http({url: 'add_ajax.php',method: "POST",
+             $http({url: 'api/add_ajax.php',method: "POST",
             data : $scope.user})
         .then(function(res) {
         // console.log(res.data.sucess); // success
                if (res) {
                   $scope.successmsg = res.data.success;
                   $scope.user = '';
-                $http.get("all_ajax.php").then(function (response) {
+                $http.get("api/all_ajax.php").then(function (response) {
                     // console.log(response.data.student);
                     $scope.mydata = response.data.student;
                 });

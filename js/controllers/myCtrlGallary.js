@@ -20,7 +20,8 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
     $scope.table_age        = 'age';
     $scope.table_edit       =  'edit';
     $scope.table_delete     =  'delete';
-    url = "database/studentInfo.php";
+    url = "api/database/studentInfo.php";
+    urlstudent = "api/stud_all.php";
     $scope.getData = function () {
       return $filter('filter')($scope.data, $scope.q)
     }
@@ -29,7 +30,7 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
         return Math.ceil($scope.getData().length/$scope.pageSize);
     }
 
-     $http.get("stud_all.php").then(function(response) {
+     $http.get(urlstudent).then(function(response) {
         for (var i = 0; i < response.data.length; i ++) {
             // console.log(response.data[i]);
             $scope.data.push({  'id':response.data[i].id,
@@ -41,11 +42,11 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
                             });
         }
     });
-    $http.get("stud_all.php").then(function(response) {
+    $http.get(urlstudent).then(function(response) {
          $scope.items = response.data;
     });
     $scope.$on('updateNewRow', function(event, data) {
-        $http.get("stud_all.php").then(function (response) {
+        $http.get(urlstudent).then(function (response) {
             $scope.items = response.data;
         });
     });

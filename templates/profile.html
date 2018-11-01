@@ -13,9 +13,9 @@
 	<div class="pull-left">
 			<p> Time is {{ timee }}</p>
 			<p> Date is {{ daate }}</p>
-			<p>Enter KeyWord to Search <input type="text" ng-model="name" placeholder="eg. name"></p>
+			<p>Enter KeyWord to Search <input class="form-control" type="text" ng-model="name" placeholder="eg. name"></p>
 			<ul>
-			  <li ng-repeat="x in names | orderBy:'state' | filter:name " class="animated-item">
+			  <li ng-repeat="x in names track by (x.id + $index) | orderBy:'state' | filter:name " class="animated-item">
 				 {{ x.name | uppercase }} , {{ x.state | uppercase }}
 			  </li>
 			</ul>
@@ -23,11 +23,11 @@
 	</div>
 </div>
 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-	<p>Enter KeyWord to Search <input ng-model="filterText" placeholder="eg. name"/></p>
-    <ul>
-        <li ng-repeat="color in colors | filter: filterText" ng-style="{'color': '{{color}}'}" class="animated-item">{{color}}</li>
+	<p>Enter KeyWord to Search <input class="form-control" ng-model="filterText" placeholder="eg. name"/></p>
+    <ul class="list-group">
+        <li class="list-group-item" id="{{ color.id }}"ng-repeat="color in colors track by (color.id + $index) | filter: filterText" ng-style="{'color': '{{color.color}}'}" class="animated-item">{{ color.color | uppercase }}</li>
     </ul>
-
+ 
     <button ng-click="removeLast()">Remove last</button>
 </div>
 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">

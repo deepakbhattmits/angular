@@ -34,7 +34,7 @@
     <div class='col-sm-9'>
         <div class='selacted_range_products'>
            <ul class='my_Grid'>
-            <li class='my_product' ng-repeat='x in items | filter : name'>
+            <li class='my_product' ng-repeat='x in items track by (x.id + $index) | filter : name'>
                    <a class='product-links' href='javascript:void(0);'>
                         <ul class='product-details'>
                             <li>

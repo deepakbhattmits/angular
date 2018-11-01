@@ -28,16 +28,16 @@ app.controller('myCtrlProfile', function($scope, $interval, $animate, $timeout) 
     $scope.daate = newdate;
     $timeout(function () {
 			$scope.names = [
-				{name:'deepak',state:'uk'},
-				{name:'akhilesh',state:'up'},
-				{name:'devesh',state:'up'},
-				{name:'nishant',state:'up'},
-				{name:'bharath',state:'ka'},
-				{name:'naresh',state:'ka'},
-				{name:'priyanka',state:'ka'},
-				{name:'dinesh',state:'ap'},
-				{name:'pooja',state:'mp'},
-				{name:'mahadev',state:'ka'}
+				{id: '1',name:'deepak',state:'uk'},
+				{id: '2',name:'akhilesh',state:'up'},
+				{id: '3',name:'devesh',state:'up'},
+				{id: '4',name:'nishant',state:'up'},
+				{id: '5',name:'bharath',state:'ka'},
+				{id: '6',name:'naresh',state:'ka'},
+				{id: '7',name:'priyanka',state:'ka'},
+				{id: '8',name:'dinesh',state:'ap'},
+				{id: '8',name:'pooja',state:'mp'},
+				{id: '9',name:'mahadev',state:'ka'}
 			]
 		});
 	$scope.removeLastName = function() {
@@ -45,7 +45,16 @@ app.controller('myCtrlProfile', function($scope, $interval, $animate, $timeout) 
 		$scope.names.splice($scope.names.length-1,1);
 	}
 	$timeout(function () {
-		$scope.colors = ['blue', 'red', 'green', 'pink', 'orange', 'purple', 'darkgreen']
+		$scope.colors = [
+      {id: '1',color:'blue'},
+      {id: '2',color:'cyan'},
+      {id: '3',color:'red'},
+      {id: '4',color:'green'},
+      {id: '5',color:'pink'},
+      {id: '6',color:'orange'},
+      {id: '7',color:'purple'},
+      {id: '8',color:'darkgreen'},
+      ]
 	});
 	$scope.removeLast = function() {
 		console.log($scope.colors.length);

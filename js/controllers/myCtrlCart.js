@@ -12,7 +12,7 @@ app.controller('myCtrlCart',['$http','$scope', '$filter', function ($http, $scop
    $scope.cart_UpdatedPrice = 'updated price';
    $scope.cart_buy = 'buy now';
    $scope.cart_remove = 'remove';
-    $http.get("new_php.php").then(function (response) {
+    $http.get("api/new_php.php").then(function (response) {
         $scope.mycart = response.data;
            for (var i = 0; i < response.data.length; i ++) {
                // console.log(response.data[i]);
@@ -33,7 +33,7 @@ app.controller('myCtrlCart',['$http','$scope', '$filter', function ($http, $scop
    }
    //handle cart_remove event
            $scope.$on("cart_remove", function (evt, data) {
-               $http.get("new_php.php").then(function (response) {
+               $http.get("api/new_php.php").then(function (response) {
                    $scope.mycart = response.data;
                    for(var i=0; i < response.data.length; i++ ){
                    // console.log(response.data.product[i]);
@@ -43,7 +43,7 @@ app.controller('myCtrlCart',['$http','$scope', '$filter', function ($http, $scop
    $scope.cart_remove_btn = function(id){
        // console.log('remove');
        if(confirm('Are you Sure to Remove This product From Cart (Product id is : '+id+' )')){
-           $http({url: 'buy_remove.php',method: "POST",
+           $http({url: 'api/buy_remove.php',method: "POST",
                data : {id:id,type:'remove'},
                headers: {'Content-Type': 'application/json' }
                })
@@ -58,7 +58,7 @@ app.controller('myCtrlCart',['$http','$scope', '$filter', function ($http, $scop
    $scope.cart_prodbuy_btn  = function(id,name,price,qty,upprice,stock){
        // console.log('buy');
        if(confirm('product id is : '+id +' and product name is : '+ name +' and product Quantity is : ' + qty + ' Updated-Price is '+ upprice)){
-           $http({url: 'buy_remove.php',method: "POST",
+           $http({url: 'api/buy_remove.php',method: "POST",
                data : {id:id,name:name,price:price,qty:qty,uprice:upprice,type:'buy'},
                headers: {'Content-Type': 'application/json' }
                })

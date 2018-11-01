@@ -4,7 +4,7 @@ app.controller('myCtrlContact', function($scope,$http) {
         $scope.name = 'name';
         $scope.email = 'email';
         $scope.enq = 'enquiry';
-        url = "studentInfo.php";
+        url = "api/studentInfo.php";
         $scope.submitFormcntc = function() {
         //console.log($scope.user.username ,"--",$scope.user.useremail ,"--", $scope.user.userenq );
         if($scope.user.username != null && $scope.user.useremail != null && $scope.user.userenq != null) {

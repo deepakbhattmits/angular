@@ -18,7 +18,7 @@
 				<div class='col-sm-9'>
 					<input class='fn form-control' type='text' ng-model="user.fn" required/>
 					<span ng-bind='errorfName'></span>
-					<!-- <ul ng-repeat='exists in arr_name | filter:user.fn'>
+					<!-- <ul ng-repeat='exists in arr_name  track by (exists.id + $index) | filter:user.fn'>
 						<li ng-bind='exists'></li>
 					</ul> -->
 				</div>
@@ -77,7 +77,7 @@
 	<div ng-show='my_cover' id='cover' ></div>
 	<select class='users' ng-model='x' ng-change='showMe(x)'>
 		<option ng-bind='(select_name | uppercase)'></option>
-		<option ng-repeat='x in mydata' >{{ x | uppercase}}</option>
+		<option ng-repeat='x in mydata track by (x.id + $index)' >{{ x | uppercase}}</option>
 	</select>
 	<div class='my_data table-responsive'>
 	<table class='table'>
@@ -89,7 +89,7 @@
 			<th ng-bind='(table_job | uppercase)'></th>
 			<th ng-bind='(table_age | uppercase)'></th>
 		</tr>
-		<tr ng-repeat='item in items'>
+		<tr ng-repeat='item in items track by (item.id + $index)'>
 			<td ng-bind='(item.id)'></td>
 			<td ng-bind='(item.FirstName | uppercase)'></td>
 			<td ng-bind='(item.LastName | uppercase)'></td>

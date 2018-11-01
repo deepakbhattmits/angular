@@ -125,7 +125,8 @@ app.controller('myCtrlHome', function($scope){
     $scope.table_age        = 'age';
     $scope.table_edit       =  'edit';
     $scope.table_delete     =  'delete';
-    url = "database/studentInfo.php";
+    url = "api/database/studentInfo.php";
+    urlstudent = 'api/stud_all.php';
     $scope.getData = function () {
       return $filter('filter')($scope.data, $scope.q)
     }
@@ -134,7 +135,7 @@ app.controller('myCtrlHome', function($scope){
         return Math.ceil($scope.getData().length/$scope.pageSize);
     }
 
-     $http.get("stud_all.php").then(function(response) {
+     $http.get(urlstudent).then(function(response) {
         for (var i = 0; i < response.data.length; i ++) {
             // console.log(response.data[i]);
             $scope.data.push({  'id':response.data[i].id,
@@ -146,11 +147,11 @@ app.controller('myCtrlHome', function($scope){
                             });
         }
     });
-    $http.get("stud_all.php").then(function(response) {
+    $http.get(urlstudent).then(function(response) {
          $scope.items = response.data;
     });
     $scope.$on('updateNewRow', function(event, data) {
-        $http.get("stud_all.php").then(function (response) {
+        $http.get(urlstudent).then(function (response) {
             $scope.items = response.data;
         });
     });
@@ -238,7 +239,7 @@ app.directive('ngConfirmClick',function(){
         $scope.emsg = false;
         $scope.cmsg = false;
         $scope.showup = false;
-        $http.get("all_ajax.php").then(function(response) {
+        $http.get("api/all_ajax.php").then(function(response) {
         $scope.items = response.data.product;
 
         for(var  i = 0; i < response.data.product.length ; i++){
@@ -283,7 +284,7 @@ app.directive('ngConfirmClick',function(){
             var stock = stock - qty ;
            if(confirm('product id is : '+id +' and product name is : '+ name +' and product Quantity is : ' + qty + ' Updated-Price is '+ uprice + ' STOCK : '+ stock)){
                  // // console.log(product_data);
-            $http({url: 'product_cart.php',method: "POST",
+            $http({url: 'api/product_cart.php',method: "POST",
                 data : {id:id,name:name,price:price,qty:qty,uprice:uprice,stock:stock},
                 headers: {'Content-Type': 'application/json' }
                 })
@@ -300,7 +301,7 @@ app.directive('ngConfirmClick',function(){
         }
         //handle SendDown event
             $scope.$on("SendDown", function (evt, data) {
-                $http.get("all_ajax.php").then(function (response) {
+                $http.get("api/all_ajax.php").then(function (response) {
                     $scope.items = response.data.product;
                     for(var i=0; i < response.data.product.length; i++ ){
                     // console.log(response.data.product[i]);
@@ -368,7 +369,7 @@ app.directive('ngConfirmClick',function(){
             $scope.user = null;
         }
     };
-    $http.get("all_ajax.php").then(function(response) {
+    $http.get("api/all_ajax.php").then(function(response) {
         // console.log(response.data.FirstName);
         $scope.mydata = response.data.student;
     });
@@ -382,7 +383,7 @@ app.directive('ngConfirmClick',function(){
         $scope.table_age        = 'age';
         $scope.table_edit       = 'edit';
         $scope.table_delete     = 'delete';
-        $http({url: 'ajax_search.php',method: "POST",
+        $http({url: 'api/ajax_search.php',method: "POST",
             data: {FirstName:data_f}
         })
         .then(function(response) {
@@ -395,7 +396,7 @@ app.directive('ngConfirmClick',function(){
     }
    $scope.submitForm = function() {
         //// console.log($scope.user);
-        $http.get("all_ajax.php").then(function(response) {
+        $http.get("api/all_ajax.php").then(function(response) {
             //$scope.arr_name = response.data;
             for(i=0;i<=response.data.length;i++){
                 // console.log(response.data[i]);
@@ -406,14 +407,14 @@ app.directive('ngConfirmClick',function(){
                     return false;
                     }
                 }
-             $http({url: 'add_ajax.php',method: "POST",
+             $http({url: 'api/add_ajax.php',method: "POST",
             data : $scope.user})
         .then(function(res) {
         // console.log(res.data.sucess); // success
                if (res) {
                   $scope.successmsg = res.data.success;
                   $scope.user = '';
-                $http.get("all_ajax.php").then(function (response) {
+                $http.get("api/all_ajax.php").then(function (response) {
                     // console.log(response.data.student);
                     $scope.mydata = response.data.student;
                 });
@@ -436,7 +437,7 @@ app.directive('ngConfirmClick',function(){
     $scope.cart_UpdatedPrice = 'updated price';
     $scope.cart_buy = 'buy now';
     $scope.cart_remove = 'remove';
-     $http.get("new_php.php").then(function (response) {
+     $http.get("api/new_php.php").then(function (response) {
          $scope.mycart = response.data;
             for (var i = 0; i < response.data.length; i ++) {
                 // console.log(response.data[i]);
@@ -457,7 +458,7 @@ app.directive('ngConfirmClick',function(){
     }
     //handle cart_remove event
             $scope.$on("cart_remove", function (evt, data) {
-                $http.get("new_php.php").then(function (response) {
+                $http.get("api/new_php.php").then(function (response) {
                     $scope.mycart = response.data;
                     for(var i=0; i < response.data.length; i++ ){
                     // console.log(response.data.product[i]);
@@ -467,7 +468,7 @@ app.directive('ngConfirmClick',function(){
     $scope.cart_remove_btn = function(id){
         // console.log('remove');
         if(confirm('Are you Sure to Remove This product From Cart (Product id is : '+id+' )')){
-            $http({url: 'buy_remove.php',method: "POST",
+            $http({url: 'api/buy_remove.php',method: "POST",
                 data : {id:id,type:'remove'},
                 headers: {'Content-Type': 'application/json' }
                 })
@@ -482,7 +483,7 @@ app.directive('ngConfirmClick',function(){
     $scope.cart_prodbuy_btn  = function(id,name,price,qty,upprice,stock){
         // console.log('buy');
         if(confirm('product id is : '+id +' and product name is : '+ name +' and product Quantity is : ' + qty + ' Updated-Price is '+ upprice)){
-            $http({url: 'buy_remove.php',method: "POST",
+            $http({url: 'api/buy_remove.php',method: "POST",
                 data : {id:id,name:name,price:price,qty:qty,uprice:upprice,type:'buy'},
                 headers: {'Content-Type': 'application/json' }
                 })
@@ -521,7 +522,7 @@ app.directive('ngConfirmClick',function(){
         $scope.name = 'name';
         $scope.email = 'email';
         $scope.enq = 'enquiry';
-        url = "studentInfo.php";
+        url = "api/studentInfo.php";
         $scope.submitFormcntc = function() {
         //console.log($scope.user.username ,"--",$scope.user.useremail ,"--", $scope.user.userenq );
         if($scope.user.username != null && $scope.user.useremail != null && $scope.user.userenq != null) {

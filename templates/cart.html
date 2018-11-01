@@ -41,7 +41,7 @@
             <th style='padding:10px;' ng-bind='(cart_remove | uppercase)'></th>
             <td colspan='6' ng-bind='(mycart_empty | uppercase )'></td>
         </tr>
-        <tr ng-repeat='cart in mycart | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
+        <tr ng-repeat='cart in mycart  track by (cart.id  + $index) | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
             <td style='padding:10px;' ng-bind='(cart.id)'></td>
             <td style='padding:10px;' ng-bind='(cart.name | uppercase)'></td>
             <td style='padding:10px;' ng-bind='(cart.price | uppercase)' ng-modal='price'></td>

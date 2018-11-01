@@ -8,7 +8,7 @@ app.controller('myCtrlMp3', function($scope,$http) {
         $scope.emsg = false;
         $scope.cmsg = false;
         $scope.showup = false;
-        $http.get("all_ajax.php").then(function(response) {
+        $http.get("api/all_ajax.php").then(function(response) {
         $scope.items = response.data.product;
 
         for(var  i = 0; i < response.data.product.length ; i++){
@@ -53,7 +53,7 @@ app.controller('myCtrlMp3', function($scope,$http) {
             var stock = stock - qty ;
            if(confirm('product id is : '+id +' and product name is : '+ name +' and product Quantity is : ' + qty + ' Updated-Price is '+ uprice + ' STOCK : '+ stock)){
                  // // console.log(product_data);
-            $http({url: 'product_cart.php',method: "POST",
+            $http({url: 'api/product_cart.php',method: "POST",
                 data : {id:id,name:name,price:price,qty:qty,uprice:uprice,stock:stock},
                 headers: {'Content-Type': 'application/json' }
                 })
@@ -70,7 +70,7 @@ app.controller('myCtrlMp3', function($scope,$http) {
         }
         //handle SendDown event
             $scope.$on("SendDown", function (evt, data) {
-                $http.get("all_ajax.php").then(function (response) {
+                $http.get("api/all_ajax.php").then(function (response) {
                     $scope.items = response.data.product;
                     for(var i=0; i < response.data.product.length; i++ ){
                     // console.log(response.data.product[i]);
