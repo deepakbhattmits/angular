@@ -11,7 +11,7 @@ $htown = $_POST['ht'];
 $job   = $_POST['job'];
 $age   = $_POST['age'];
 //$link = mysqli_connect('localhost', 'root', '' ,'angdb');
-include "connection.php
+include "connection.php";
 mysqli_set_charset($link, "utf8");
 if (!$link) {
     die('Could not connect: ' . mysqli_error());

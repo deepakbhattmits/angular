@@ -20,7 +20,7 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
     $scope.table_age        = 'age';
     $scope.table_edit       =  'edit';
     $scope.table_delete     =  'delete';
-    url = "api/database/studentInfo.php";
+    url = "api/studentInfo.php";
     urlstudent = "api/stud_all.php";
     $scope.getData = function () {
       return $filter('filter')($scope.data, $scope.q)
@@ -45,6 +45,15 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
     $http.get(urlstudent).then(function(response) {
          $scope.items = response.data;
     });
+
+
+// // is the same as
+// var promise = $http.get(urlstudent);
+//
+// promise.then(
+//   function(payload) {
+//     $scope.items = payload.data;
+//   });
     $scope.$on('updateNewRow', function(event, data) {
         $http.get(urlstudent).then(function (response) {
             $scope.items = response.data;

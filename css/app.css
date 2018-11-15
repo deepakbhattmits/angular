@@ -1,6 +1,9 @@
 body.MainPageBody{
   background:#dadada;
 }
+.container-fluid .no-padding {
+  padding: 0;
+}
 /* app css stylesheet */
 .my_page_head{
   margin-top:0px;/*50px*/
@@ -120,7 +123,7 @@ select.users{
   box-shadow:0 0 20px #000;
   cursor:pointer;
 }
-#cover{ 
+#cover{
     position:fixed;
     top:0;
     left:0;
@@ -129,7 +132,7 @@ select.users{
     width:100%;
     height:100%;
 }
-#popup{ 
+#popup{
     padding: 20px;
     height:80%;
     width:50%;
@@ -144,13 +147,13 @@ select.users{
     -moz-box-shadow: 0 0 21px -2px #9b9b9b;
     box-shadow: 0 0 21px -2px #9b9b9b;
     -o-box-shadow: 0 0 21px -2px #9b9b9b;
-    -ms-box-shadow: 0 0 21px -2px #9b9b9b; 
+    -ms-box-shadow: 0 0 21px -2px #9b9b9b;
 }
 #popup_cancel{
-    display:block; 
+    display:block;
     position:absolute;
     top:3px;
-    right:2px; 
+    right:2px;
     color:#000;
     height:30px;
     width:35px;
@@ -158,7 +161,7 @@ select.users{
     text-decoration:none;
     text-align:center;
     font-weight:800;
-} 
+}
 #popup_cancel:hover{
     cursor: pointer;
     opacity: .5;
@@ -188,7 +191,7 @@ a.product-links{
     display: inline-block;
     text-align: center;
     line-height: 200px;
-} 
+}
 a.product-links:hover{
   text-decoration:none;
 }
@@ -200,9 +203,9 @@ ul.grid li{
   display: inline-block;
   list-style: none;
 }
-.range-slider .name-div{ 
+.range-slider .name-div{
     width: 33%;
-    margin-left: 35px;    
+    margin-left: 35px;
     position: relative;
     background: green;
     padding: 15px;
@@ -227,7 +230,7 @@ ul.grid li{
     bottom: 0px;
     left:-50px;
 }
-.range-slider .name-div1{ 
+.range-slider .name-div1{
     width: 33%;
     margin-left: 35px;
     background: PINK;
@@ -258,7 +261,7 @@ ul.grid li{
     border-radius: 44px;
     border-left: 50px solid pink;
 }
-.range-slider .name-div2{ 
+.range-slider .name-div2{
     width: 33%;
     margin-left: 35px;
     background: purple;
@@ -289,7 +292,7 @@ ul.grid li{
     border-bottom: 25px solid transparent;
     border-left: 10px solid transparent;
 }
-.range-slider .name-div3{ 
+.range-slider .name-div3{
     width: 33%;
     margin-left: 35px;
     background: #adadad;
@@ -478,7 +481,7 @@ a.cl-effect-20 span:hover:before {
   position: absolute;
 }
 .my_cart{
-  
+
 }
 .edit_pop {
     margin-bottom: 10px;
@@ -488,8 +491,17 @@ ul.menu li:last-child {
     margin-right: 13px;
     text-transform: capitalize;
 }
+.carousasl-custom .img-slider {
+  width: 100%;
+  padding: 0;
+}
+.carousasl-custom,
+.main_page .bgimg-1  {
+  width: 100%;
+  margin: 10px auto;
+}
 /*admin_login s*/
-@media only screen and (min-width:769px){
+@media screen and (min-width:769px){
   .admin_login_form {
       margin: auto;
       width: 20%;
@@ -505,12 +517,10 @@ ul.menu li:last-child {
     border-radius: 5px;
   }
   .carousasl-custom {
-    width:100%;
-    height:336px;
-    margin:0px auto;
+    height: 360px;
   }
 }
-@media only screen and (max-width:768px){
+@media screen and (max-width:768px){
   .admin_login_form {
       margin: auto;
       width: 80%;
@@ -525,12 +535,8 @@ ul.menu li:last-child {
     font-size: 20px;
     border-radius: 5px;
   }
- .carousasl-custom {
-    width:100%;
-    margin:0px auto;
-  }
-  #popup{ 
-    width:80%;
+  #popup{
+    width: 80%;
   }
 
 }
@@ -645,7 +651,7 @@ ul.navbar-right li a:hover:after {
   font-weight: normal;
   text-decoration: inherit;
   font-size: 20px;
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 .search-btn:before{
   content: '\f002';
@@ -686,7 +692,7 @@ ul.navbar-right li a:hover:after {
   font-weight: normal;
   text-decoration: inherit;
   font-size: 20px;
-}   
+}
 .balloon > div:nth-child(1) {
   background: rgba(182, 15, 97, 0.9);
   left: 0;
@@ -765,7 +771,7 @@ ul.navbar-right li a:hover:after {
   bottom: -11px;
   left: 25px;
   content:"\f004";
-  font-family: fontawesome; 
+  font-family: fontawesome;
   font-size: 1em;
 }
 .balloon span {
@@ -914,7 +920,7 @@ ul.navbar-right li a:hover:after {
 .page_header{
   height:53px;
 }
-.page_footer{ 
+.page_footer{
   height: 148px;
 }
 .main_page .database_ajax div.my_data{
@@ -926,9 +932,9 @@ ul.navbar-right li a:hover:after {
     margin: 5px;
 }
 /*----new carousel----*/
-.carousasl-custom > div{
+/* .carousasl-custom > div{
   height: 200px;
-}
+} */
 .carousasl-custom > div img{
   margin:auto;
 }
@@ -939,8 +945,8 @@ ul.navbar-right li a:hover:after {
     color: #0a870a;
     font-size: 120%;
 }
-#map-canvas { 
-    height: 300px; 
+#map-canvas {
+    height: 300px;
     width: 100%;
 }
 .left.carousel-control,
@@ -984,7 +990,7 @@ ul.navbar-right li a:hover:after {
   background: pink;
 }
 .pop{
-  position: absolute; 
+  position: absolute;
   width:10%;
   height: 10%;
   left: 0;
@@ -1084,24 +1090,24 @@ h3 {
     }
 }
 /* Extra small devices (portrait phones, less than 576px) */
-@media screen and (max-width: 575px) { 
+@media screen and (max-width: 575px) {
   .caption span.border{
     font-size:100%;
   }
  }
 
 /* Small devices (landscape phones, less than 768px) */
-@media screen and (max-width: 767px) { 
+@media screen and (max-width: 767px) {
 
  }
 
 /* Medium devices (tablets, less than 992px) */
-@media screen and (max-width: 991px) { 
+@media screen and (max-width: 991px) {
 
  }
 
 /* Large devices (desktops, less than 1200px) */
-@media screen and (max-width: 1199px) { 
+@media screen and (max-width: 1199px) {
 
  }
 /* for new page start */
@@ -1112,7 +1118,7 @@ h3 {
   padding:15px 0;
 }
 .main-banner{
-  background-image: url("../img/kabloom/mainbanner.png"); 
+  background-image: url("../img/kabloom/mainbanner.png");
 }
 .text-orange{
   color: #ffa600;

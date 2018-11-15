@@ -1,14 +1,41 @@
   'use strict';
     var app = angular.module('myCtrlHome',[]);
-    app.controller('myCtrlHome', ['$scope', function($scope) {
+    app.controller('myCtrlHome', ['$scope','checkLogoutService','checkLoginService','getLogout', function($scope, checkLogoutService, checkLoginService, getLogout) {
+      $scope.init = function(pageTitle) {
+       // $scope.pageTitle = pageTitle;
+       // jQuery(".carousel-control.left,.carousel-control.right").text("");
+       // console.log("test : ",pageTitle);
+   }
 
   $scope.page_name = 'home';
-    $scope.userName = 'om prakash bhatt';
+    // $scope.userName = 'om prakash bhatt';
+    // $scope.userName = 'welcome'+localStorage.getItem('currentUser')+' !';
+    $scope.userName = (sessionStorage.getItem('currentUser') == null )?'om prakash bhatt ':'welcome '+sessionStorage.getItem('currentUser')+' !';
+    $scope.checkLogin = function(){
+      return  checkLoginService.checkLoginfunction();
+    }
+    $scope.checkLogout = function(){
+      return checkLogoutService.checkLogoutfunction();
+    }
+    $scope.logout = function($location){
+        getLogout.getLogoutUser();
+        // $location.path("/admin");
+      // var promise =  getLogout.getLogoutUser();
+      //     promise.then(function(response) {
+      //       // console.log("User Loged Out : ",response.data[0]);
+      //        $location.path("/admin");
+      //     }, function(reason) {
+      //       console.log('Failed: ' + reason);
+      //     }, function(update) {
+      //       console.log('Got notification: ' + update);
+      //     });
+    },
     $scope.userNamehome = 'deepak bhatt';
     $scope.userContenthead = 'user interface';
     $scope.userContenthead2 = 'magic';
     $scope.userContenthead3 = 'roadies';
     $scope.userContenthead4 = 'rock';
+
     $scope.userContent = 'The user interface (UI), in the industrial design field of human–computer interaction, is the space where interactions between humans and machines occur. The goal of this interaction is to allow effective operation and control of the machine from the human end, whilst the machine simultaneously feeds back information that aids the operators decision-making process. Examples of this broad concept of user interfaces include the interactive aspects of computer operating systems, hand tools, heavy machinery operator controls, and process controls. The design considerations applicable when creating user interfaces are related to or involve such disciplines as ergonomics and psychology.';
     $scope.userContent2 = 'Magic words or words of power are words which have a specific, and sometimes unintended, effect. They are often nonsense phrases used in fantasy fiction or by stage prestidigitators. Frequently such words are presented as being part of a divine, adamic, or other secret or empowered language. Certain comic book heroes use magic words to activate their super powers. Magic words are also used as Easter eggs or cheats in computer games, other software, and operating systems. (For example, the words xyzzy, plugh, and plover were magic words in the classic computer adventure game Colossal Cave Adventure).';
 	$scope.userContent3 = 'MTV Roadies is a youth-based popular reality television show on MTV India. The show first started in 2003. In the show, a group of contestants travel to different destinations and participate in various tasks that seemingly challenge their physical and mental strength. During the course of the journey, there are vote outs, vote ins, eliminations and game changing twists. Eventually the contestant who manages to survive vote outs and succeed in the final task is chosen as the winner. The show has enjoyed much success among the youth. When asked about the show, the executive producer said, "Roadies has travel, adventure, drama, touch of voyeurism..."';

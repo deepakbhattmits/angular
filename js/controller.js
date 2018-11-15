@@ -575,3 +575,44 @@ app.directive('ngConfirmClick',function(){
     }
 });
 });
+
+
+// function minmax() {
+// var arr = [],e = 0;
+// var slicedArgs = Array.prototype.slice.call(arguments, -1);
+// if(slicedArgs == 'max'){
+// for (var i = 0; i < arguments.length; i++) {
+//     arr.push(arguments[i]);
+//   }
+// arr.pop();
+// e = Math.max.apply(null,arr);
+// } else if(slicedArgs == 'min') {
+// for (var i = 0; i < arguments.length; i++) {
+//     arr.push(arguments[i]);
+//   }
+// arr.pop();
+// e = Math.min.apply(null,arr);
+// }
+// return e;
+// }
+//
+// console.log(minmax(199, 55, 743, 221, 888, 324, 434,'min')); // get the value of min and max value
+/*-------------------------*/
+// pass value in array form 
+// function minmax() {
+// var arr = [],e = 0;
+// // console.log('final',arguments);
+// var slicedArgs = Array.prototype.slice.call(arguments, -1);
+// // console.log(slicedArgs);
+// arr = arguments[0]
+// // console.log('new arr',arr);
+// if(slicedArgs == 'max'){
+// e = Math.max.apply(null,arr);
+// } else if(slicedArgs == 'min') {
+// // console.log('test :',arr);
+// e = Math.min.apply(null,arr);
+// }
+// return e;
+// }
+//
+// console.log(minmax([199, 55, 743, 221, 888, 324, 434],'max'));

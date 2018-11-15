@@ -1,13 +1,7 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-</head>
-<body class='ClipsPageBody'>
+<div class="col-lg-12">
 <h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
-<div class='container'>
-	<div class='row'>
+</div>
 		<div class='col-sm-3 col-xs-12'>
 			<div ng-init="count=1;inactive=false">
 				<a ng-click="inactive = !inactive" href="">Toggle Active</a>
@@ -58,6 +52,3 @@
 					</div>
 				</div>
 		</div>
-	</div>
-</body>
-</html>

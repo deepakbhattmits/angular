@@ -1,11 +1,6 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-</head>
-<body class='GallaryPageBody'>
-<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+<div class="col-lg-12">
+  <h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
 <div>
 <div class='col-sm-3 col-xs-12'>
 <div class='form-group'>
@@ -41,7 +36,7 @@
             <th style='padding:10px;' ng-bind='(table_edit | uppercase)'></th>
             <th style='padding:10px;' ng-bind='(table_delete | uppercase)'></th>
         </tr>
-        <tr ng-repeat="item in items  track by (item.id + $index) | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <tr ng-repeat="item in items | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
             <td style='padding:10px;' ng-bind='(item.id)'></td>
             <td style='padding:10px;' ng-bind='(item.FirstName | uppercase)'></td>
             <td style='padding:10px;' ng-bind='(item.LastName | uppercase)'></td>
@@ -117,6 +112,3 @@
         </form>
     </div>
     <div ng-show='my_cover' id='cover' ></div>
-</div>
-</body>
-</html>

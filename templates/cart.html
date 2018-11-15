@@ -1,12 +1,9 @@
 <!doctype html>
-<html lang="en" >
-<head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-</head>
-<body class='GallaryPageBody'>
-<h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
-<div class='container-fluid'>
+
+<div class="col-lg-12">
+  <h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
+</div>
+
 <div class='col-sm-3 col-xs-12'>
     <div class='form-group'>
     <input ng-model="query" id="search" class="form-control" placeholder="Filter text">
@@ -41,7 +38,7 @@
             <th style='padding:10px;' ng-bind='(cart_remove | uppercase)'></th>
             <td colspan='6' ng-bind='(mycart_empty | uppercase )'></td>
         </tr>
-        <tr ng-repeat='cart in mycart  track by (cart.id  + $index) | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
+        <tr ng-repeat='cart in mycart | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
             <td style='padding:10px;' ng-bind='(cart.id)'></td>
             <td style='padding:10px;' ng-bind='(cart.name | uppercase)'></td>
             <td style='padding:10px;' ng-bind='(cart.price | uppercase)' ng-modal='price'></td>
@@ -54,6 +51,3 @@
     </table>
     </div>
     </div>
-</div>
-</body>
-</html>

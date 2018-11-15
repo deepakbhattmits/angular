@@ -1,12 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-</head>
-<body class='ProfilePageBody'>
-<div class='col-xs-12'>
-	<h3 class='my_home_name' ng-bind='( page_name | uppercase )'></h3>
+<div class="col-lg-12">
+  <h3 class='my_home_name' ng-bind='( page_name | uppercase )'></h3>
 </div>
 
 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
@@ -15,19 +8,73 @@
 			<p> Date is {{ daate }}</p>
 			<p>Enter KeyWord to Search <input class="form-control" type="text" ng-model="name" placeholder="eg. name"></p>
 			<ul>
-			  <li ng-repeat="x in names track by (x.id + $index) | orderBy:'state' | filter:name " class="animated-item">
+			  <li ng-repeat="x in names | orderBy:'state' | filter:name " class="animated-item">
 				 {{ x.name | uppercase }} , {{ x.state | uppercase }}
 			  </li>
 			</ul>
 			<button ng-click="removeLastName()">Remove last</button>
 	</div>
 </div>
-<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-	<p>Enter KeyWord to Search <input class="form-control" ng-model="filterText" placeholder="eg. name"/></p>
-    <ul class="list-group">
-        <li class="list-group-item" id="{{ color.id }}"ng-repeat="color in colors track by (color.id + $index) | filter: filterText" ng-style="{'color': '{{color.color}}'}" class="animated-item">{{ color.color | uppercase }}</li>
+<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+  <select ng-options="x.name for x in names " ng-model="selectedVlaues">
+    <option value="">-- Select your option -- </option>
+  </select>
+  <!--It will display complete object-->
+  <!-- <p class="h1">{{ selectedVlaues | uppercase }}</p> -->
+  <p class="h1">{{ selectedVlaues.name | uppercase }}</p>
+  <!--It will display object's name-->
+  <select ng-model="selectedPerson" >
+    <option value="">-- Select your option -- </option>x
+    <option ng-repeat="x in names" value="{{x.name}}">
+      {{x.name}}
+    </option>
+  </select>
+    <p class="h1" ng-bind="(selectedPerson | capitalize)"></p>
+</div>
+<div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+  <p>Check me for enter value <input type="checkbox" ng-model="checked" /></p>
+
+    <!-- <H1 ng-if="checked">ng-if</H1>
+<H1 ng-show="checked">ng-show</H1>
+<H1 ng-hide="checked">ng-hide</H1>
+
+  <H1 ng-if="!checked">if no</H1> -->
+
+  <!-- Choose your favorite topic:
+  <select ng-options="x.name for x in names " ng-model="selectedVlaues">
+    <option value="">-- Select your option -- </option>
+  </select>
+<hr>
+<div ng-switch="selectedVlaues.name">
+  <div ng-switch-when="deepak">
+     <h1>Zoology</h1>
+     <p>Welcome to a world of zoology.</p>
+  </div>
+  <div ng-switch-when="akhilesh">
+     <h1>Tutorials</h1>
+     <p>Learn from examples.</p>
+  </div>
+  <div ng-switch-when="nishant">
+     <h1>Cars</h1>
+     <p>Read about cars.</p>
+  </div>
+  <div ng-switch-when="mahadev">
+     <h1>Cars</h1>
+     <p>Read about bikes.</p>
+ </div>
+  <div ng-switch-default>
+     <h1>Switch</h1>
+     <p>Select topic from the dropdown, to switch the content of this DIV.</p>
+  </div>
+</div>
+<hr>-->
+  <!-- <p>Enter KeyWord to Search <input class="form-control" ng-if="!checked" ng-model="filterText" placeholder="eg. name"/></p> -->
+  <p>Enter KeyWord to Search <input class="form-control" ng-readonly="!checked" ng-model="filterText" placeholder="eg. name"/></p>
+  <!-- <p>Enter KeyWord to Search <input class="form-control" ng-disabled="!checked" ng-model="filterText" placeholder="eg. name"/></p> -->
+    <ul >
+        <li  id="{{ color.id }}"ng-repeat="color in colors | filter: filterText" ng-style="{'color': '{{color.color}}'}" class="animated-item">{{ color.color | uppercase }}</li>
     </ul>
- 
+
     <button ng-click="removeLast()">Remove last</button>
 </div>
 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
@@ -37,17 +84,14 @@
 			<p>Show and hide this box using animate.css the angularway!</p>
 		</div>
 </div>
-<div class="row">
+
   <audio controls>
     <source src="audio/horse.ogg" type="audio/ogg">
     <source src="audio/horse.mp3" type="audio/mpeg">
     Your browser does not support the audio tag.
   </audio>
-</div>
 
 
-</body>
-</html>
 
 
 <style>
