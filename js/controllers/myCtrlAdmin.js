@@ -5,6 +5,7 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', 'getAll', 'getSpecifi
     $scope.datas = [];
     $scope.dataf = [];
     $scope.msg = '';
+    $scope.show = false;
     $scope.word = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
     var strongRegularExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     var mediumRegularExp = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
@@ -45,14 +46,18 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', 'getAll', 'getSpecifi
                     //  console.log('Got notification: ' + update);
                     });
                   }
-              $scope.checkLogin = function(){
-                return checkLoginService.checkLoginfunction();
-                //(sessionStorage.getItem('currentUser') == null )? true:false;
+                  $scope.checkLogin = function(){
+                    return checkLoginService.checkLoginfunction();
+                    //(sessionStorage.getItem('currentUser') == null )? true:false;
+                  }
+                  $scope.checkLogout = function(){
+                    return checkLogoutService.checkLogoutfunction();
+                  }                  
+              $scope.forgotPassword = function(){
+                $scope.show = true;
               }
-              $scope.checkLogout = function(){
-
-                return checkLogoutService.checkLogoutfunction();
-
+              $scope.close = function(){
+                  $scope.show = false;
               }
 }]);
 app.filter('capitalize', function() {
