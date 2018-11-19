@@ -1,11 +1,13 @@
 var app=angular.module('myCtrlAdmin',[]);
-app.controller('myCtrlAdmin',['$http','$scope', '$filter', 'getAll', 'getSpecific', 'getLogin','checkLogoutService', 'checkLoginService', function ($http, $scope, $filter, getAll, getSpecific, getLogin, checkLogoutService, checkLoginService){
+app.controller('myCtrlAdmin',['$http','$scope', '$filter', '$timeout', 'getAll', 'getSpecific', 'getLogin','checkLogoutService', 'checkLoginService', 'forgotPasswordService', 'register', function ($http, $scope, $filter, $timeout, getAll, getSpecific, getLogin, checkLogoutService, checkLoginService, forgotPasswordService, register){
     $scope.page_name = 'Welcome Admin page';
     $scope.text = 'enter email';
     $scope.datas = [];
     $scope.dataf = [];
+    $scope.userdetails = [];
     $scope.msg = '';
     $scope.show = false;
+    $scope.registerPopup = false;
     $scope.word = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
     var strongRegularExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     var mediumRegularExp = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
@@ -35,8 +37,33 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', 'getAll', 'getSpecifi
                        $log.error('failure loading data', errorPayload);
                    });
               }
+              $scope.registerUser = function(){
+                  $scope.registerPopup = true;
+              }
+              $scope.registerStudent = function(){
+              //  console.log("register ",$scope.register);
+              if ($scope.register.rpassword != $scope.register.cpassword) {
+                  $scope.msg = " OOps password not matched ";
+              } else {
+                  $scope.msg = '';
+                  var promise4 =  register.registerStudent($scope.register);
+                  promise4.then(function(response) {
+                    // console.log("result new : ",response.data['success']);
+                    $scope.msg = response.data['success'];
+                      $timeout(function() {
+                        $scope.registerPopup = false;
+                        $scope.register = '';
+                        $scope.msg = '';
+                      }, 1000);
+                  }, function(reason) {
+                     console.log('Failed: ' + reason);
+                  }, function(update) {
+                    console.log('Got notification: ' + update);
+                  });
+              }
+            }
               $scope.login = function($location) {
-                var promise2 =  getLogin.getLoginUser($scope.user.username, $scope.user.password);
+                var promise2 =  getLogin.getLoginUser($scope.login.username, $scope.login.password);
                     promise2.then(function(response) {
                       // console.log("User checked : ",response.data[0]);
                       // $location.path("/home");
@@ -52,12 +79,30 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', 'getAll', 'getSpecifi
                   }
                   $scope.checkLogout = function(){
                     return checkLogoutService.checkLogoutfunction();
-                  }                  
+                  }
               $scope.forgotPassword = function(){
                 $scope.show = true;
               }
+              $scope.forgotPasswordData = function(){
+
+
+                var promise3 =  forgotPasswordService.forgotPasswordFunction($scope.user.recoveryUsername);
+                // console.log("function call : ", id);
+                promise3.then(
+                   function(payload) {
+                      // console.log("specific user : ",payload);
+                         $scope.userdetails  = payload[0];
+                       // console.log("specific : ",typeof( $scope.userdetails ));
+                   },
+                   function(errorPayload) {
+                       $log.error('failure loading data', errorPayload);
+                   });
+              }
               $scope.close = function(){
-                  $scope.show = false;
+                 $scope.userdetails = [];
+                 $scope.user = '';
+                 $scope.show = false;
+                  $scope.registerPopup = false;
               }
 }]);
 app.filter('capitalize', function() {

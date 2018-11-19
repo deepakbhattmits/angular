@@ -27,6 +27,19 @@
           }
         }
       });
+      app.service('register', function($q, $http, $location, $timeout) {
+          return {
+            registerStudent: function(data) {
+              var config = {
+                             params: {fname: data.firstname, lname: data.lastname, uname: data.registerUsername, pwd: data.rpassword},
+                             headers : {'Accept' : 'application/json'}
+                           };
+
+              return $http.post('./api/register.php',config);
+           }
+          }
+
+      });
   app.service('getLogin', function($http, $q, $timeout,$location) {
     var getLoginUser = function(uname,pwd ) {
     var deferred = $q.defer();
@@ -87,7 +100,7 @@
   // this removes all data saved in session
   sessionStorage.clear();
   // this removes only data which we passed
-      // sessionStorage.removeItem('currentUser')
+   // sessionStorage.removeItem('currentUser');
        $location.path('/admin');
     return deferred.promise;
   };
@@ -96,4 +109,31 @@
     getLogoutUser: getLogoutUser
   };
 
+  });
+  app.service('forgotPasswordService', function($q, $http, $location) {
+    var user = [];
+
+    return {
+      forgotPasswordFunction: function(username) {
+        // console.log("id",id);
+
+         var deferred = $q.defer();
+        var resp = $http.post('./api/forgotPassword.php?username='+username).
+          then(function(result) {
+            // save fetched posts to the local variable
+            user = result.data;
+             // console.log("resp : ",user);
+            // resolve the deferred
+            deferred.resolve(user);
+          }, function(error) {
+            user = error;
+            deferred.reject(error);
+          });
+          // set the posts object to be a promise until result comeback
+           user = deferred.promise;
+
+
+         return $q.when(user);
+      }
+    }
   });

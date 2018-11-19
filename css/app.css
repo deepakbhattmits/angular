@@ -1,6 +1,22 @@
 body.MainPageBody{
   background:#dadada;
 }
+.login-div {
+  text-align: center;
+  text-transform: capitalize;
+}
+.admin_login_form .register {
+    text-align: right;
+    width: 49%;
+    display: inline-block;
+    cursor: pointer;
+}
+.admin_login_form .forgot-password {
+    text-align: left;
+    width: 49%;
+    display: inline-block;
+    cursor: pointer;
+}
 .container-fluid .no-padding {
   padding: 0;
 }
@@ -134,7 +150,7 @@ select.users{
 }
 #popup{
     padding: 20px;
-    height:80%;
+    /* height:80%; */
     width:50%;
     position:fixed;
     z-index:10;
@@ -149,6 +165,7 @@ select.users{
     -o-box-shadow: 0 0 21px -2px #9b9b9b;
     -ms-box-shadow: 0 0 21px -2px #9b9b9b;
 }
+
 #popup_cancel{
     display:block;
     position:absolute;
@@ -502,6 +519,14 @@ ul.menu li:last-child {
 }
 /*admin_login s*/
 @media screen and (min-width:769px){
+  #popup.forgotPassword{
+      /* height: 155px; */
+      width: 25%;
+  }
+  #popup.registerPopup {
+      /* height: 365px; */
+      width: 30%;
+    }
   .admin_login_form {
       margin: auto;
       width: 20%;
@@ -521,6 +546,12 @@ ul.menu li:last-child {
   }
 }
 @media screen and (max-width:768px){
+  /* #popup.forgotPassword{
+      height: 150px;
+  }
+  #popup.registerPopup {
+      height: 365px;
+    } */
   .admin_login_form {
       margin: auto;
       width: 80%;
@@ -536,7 +567,7 @@ ul.menu li:last-child {
     border-radius: 5px;
   }
   #popup{
-    width: 80%;
+    width: 90%;
   }
 
 }

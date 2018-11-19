@@ -1,6 +1,6 @@
 /*shop_page controller*/
 var app=angular.module('myCtrlShop',[]);
-app.controller('myCtrlShop', function($scope,$http) {
+app.controller('myCtrlShop', ['$http','$scope', '$filter', 'checkLogoutService', 'checkLoginService', 'forgotPasswordService', function ($http, $scope, $filter, checkLogoutService, checkLoginService, forgotPasswordService){
     $scope.page_name    = 'manage user';
     $scope.submit_data  = 'submit';
     $scope.select_name  = '--select Person--';
@@ -83,7 +83,14 @@ app.controller('myCtrlShop', function($scope,$http) {
 
 
     }
- });
+    $scope.checkLogin = function(){
+      return checkLoginService.checkLoginfunction();
+      //(sessionStorage.getItem('currentUser') == null )? true:false;
+    }
+    $scope.checkLogout = function(){
+      return checkLogoutService.checkLogoutfunction();
+    }
+}]);
  app.filter('capitalize', function() {
  return function(input, all) {
    var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;

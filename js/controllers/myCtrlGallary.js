@@ -1,5 +1,5 @@
 var app=angular.module('myCtrlGallary',[]);
-app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $scope, $filter) {
+app.controller('myCtrlGallary',['$http','$scope', '$filter','checkLogoutService', 'checkLoginService', function ($http, $scope, $filter, checkLogoutService, checkLoginService) {
   $scope.page_name = 'user details';
    $scope.currentPage = 0;
     $scope.pageSize = 10;
@@ -111,6 +111,13 @@ app.controller('myCtrlGallary',['$http','$scope', '$filter', function ($http, $s
         $scope.my_popup = false;
         $scope.my_cover = false;
         $scope.successmsg = '';
+    }
+    $scope.checkLogin = function(){
+      return checkLoginService.checkLoginfunction();
+      //(sessionStorage.getItem('currentUser') == null )? true:false;
+    }
+    $scope.checkLogout = function(){
+      return checkLogoutService.checkLogoutfunction();
     }
 
 }]);

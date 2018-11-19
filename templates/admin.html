@@ -9,24 +9,80 @@
     <form name="form" ng-submit="login(user)" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required />
+            <input type="text" name="username" id="username" class="form-control" ng-model="login.username" required />
             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
             <label for="password">Password</label>
-            <input passwordStrength type="password" name="password" id="password" class="form-control"  ng-model="user.password" required />
+            <input passwordStrength type="password" name="password" id="password" class="form-control"  ng-model="login.password" required />
              <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
         </div>
         <div class="form-group" ng-class="">
-              <span class="text-capitalize" ng-click="forgotPassword()">forgot password</span>
+              <span class="text-capitalize forgot-password" ng-click="forgotPassword()">forgot password</span>
+              <span class="text-capitalize register" ng-click="registerUser()">Sign Up</span>
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
         </div>
     </form>
-    <div ng-show='show' id='popup'>
-        <div id='popup_cancel' ng-click='close()'>&times;</div>
+    <div ng-show='show' id='popup' class="forgotPassword">
+          <form name="form1" ng-submit="forgotPasswordData(user)" role="form1">
+            <div id='popup_cancel' ng-click='close()'>&times;</div>
+              <div class="form-group" ng-class="{ 'has-error': form1.recoveryUsername.$dirty && form1.recoveryUsername.$error.required }">
+              <label for="recoveryUsername">Username</label>
+              <input type="text" name="recoveryUsername" id="recoveryUsername" class="form-control" ng-model="user.recoveryUsername" required />
+              <span ng-show="form1.recoveryUsername.$dirty && form1.recoveryUsername.$error.required" class="help-block">Username is required</span>
+            </div>
+            <div class="form-actions  text-center">
+              <button type="submit" ng-disabled="form1.$invalid" class="btn btn-primary">Fetch Data</button>
+            </div>
+          </form>
+          <span ng-show='userdetails.username'>
+            User name is <span ng-bind="( userdetails.username | uppercase )"></span> and password is <span ng-bind="( userdetails.password | capitalize )"></span>
+          </span>
     </div>
+    <div ng-show='registerPopup' id='popup' class="registerPopup">
+        <div id='popup_cancel' ng-click='close()'>&times;</div>
+          <form name="form2" ng-submit="registerStudent(user)" role="form2" class="col-lg-12">
+
+              <div class="form-group" ng-class="{ 'has-error': form2.firstname.$dirty && form2.firstname.$error.required }">
+
+                  <input type="text" name="firstname" id="firstname" class="form-control" ng-model="register.firstname" placeholder="Enter Firstname" required />
+                  <span ng-show="form2.firstname.$dirty && form2.firstname.$error.required" class="help-block">Firstname is required</span>
+
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form2.lastname.$dirty && form2.lastname.$error.required }">
+
+                      <input type="text" name="lastname" id="lastname" class="form-control" ng-model="register.lastname" placeholder="Enter Lastname" required />
+                      <span ng-show="form2.lastname.$dirty && form2.lastname.$error.required" class="help-block">Lastname is required</span>
+
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form2.registerUsername.$dirty && form2.registerUsername.$error.required }">
+
+                    <input type="text" name="registerUsername" id="registerUsername" class="form-control" ng-model="register.registerUsername" placeholder="Enter Username" required />
+                    <span ng-show="form2.registerUsername.$dirty && form2.registerUsername.$error.required" class="help-block">Username is required</span>
+
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form2.rpassword.$dirty && form2.rpassword.$error.required }">
+
+                    <input type="text" name="rpassword" id="rpassword" class="form-control" ng-model="register.rpassword" placeholder="Enter Password" required />
+                    <span ng-show="form2.rpassword.$dirty && form2.rpassword.$error.required" class="help-block">password is required</span>
+
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form2.cpassword.$dirty && form2.cpassword.$error.required }">
+
+                    <input type="text" name="cpassword" id="cpassword" class="form-control" ng-model="register.cpassword" placeholder="Confirm Password" required />
+                    <span ng-show="form2.cpassword.$dirty && form2.cpassword.$error.required" class="help-block">Cinform password is required</span>
+
+              </div>
+              <div class="form-actions text-center">
+
+                    <button type="submit" ng-disabled="form2.$invalid" class="btn btn-primary">Submit</button>
+                    <span ng-bind="( msg )"></span>
+              </div>
+          </form>
+    </div>
+    <div ng-show='registerPopup' id='cover' ></div>
     <div ng-show='show' id='cover' ></div>
 
 </div>

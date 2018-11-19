@@ -1,7 +1,15 @@
 <div class="col-lg-12">
   <h3 class='my_page_head' ng-bind='( page_name | uppercase )'></h3>
 </div>
-<div class='database_ajax'>
+<div class="col-lg-12" ng-show="checkLogin()">
+  <div class="login-div">
+    <span class="h3">
+    please Login First
+    <a ng-href="#admin">Login</a>
+    </span>
+</div>
+</div>
+<div class='database_ajax' ng-show="checkLogout()">
 	<span id='my_add_btn' ng-bind='(add_new | uppercase)' ng-click='my_popup_show()'></span>
 	<div ng-show='my_popup' id='popup'>
 	    <div id='popup_cancel' ng-click='my_popup_hide()'>&times;</div>
@@ -70,7 +78,7 @@
 
 	</div>
 	<div ng-show='my_cover' id='cover' ></div>
-	<select class='users' ng-model='x' ng-change='showMe(x)'>
+	<select class='users' ng-model='x' ng-change='showMe(x)' ng-show="checkLogout()">
 		<option ng-bind='(select_name | uppercase)'></option>
 		<option ng-repeat='x in mydata ' >{{ x | uppercase}}</option>
 	</select>
