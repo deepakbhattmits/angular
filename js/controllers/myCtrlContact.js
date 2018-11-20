@@ -6,12 +6,19 @@ app.controller('myCtrlContact', ['$scope', '$http', '$animate', 'enquiryService'
         $scope.name = 'name';
         $scope.email = 'email';
         $scope.enq = 'enquiry';
+        $scope.msg = '';
         url = "api/studentInfo.php";
 
         var promise =  enquiryService.enquiryData();
         promise.then(function(response) {
-        //  console.log("result enquiry : ",response.data);
-          $scope.items = response.data;
+
+        // console.log("result enquiry : ",response.data);
+        if(response.data != '' ) {
+            $scope.items = response.data;
+            $scope.msg = '';
+        } else {
+            $scope.msg = "no records.";
+        }
           //$scope.msg = (response.data['success']) ? response.data['success']: response.data['error'];
 
         }, function(reason) {

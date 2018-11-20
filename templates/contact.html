@@ -13,11 +13,13 @@
         </div>
         <div class='col-sm-7' ng-show="checkLogout()">
           <div class='form-group'>
+            <label for="search" > Search here </label>
             <input ng-model="q" id="search" class="form-control" placeholder="Search Comment...">
           </div>
           <div class="col-lg-12">
+            <span ng-bind='( msg | uppercase )'></span>
             <ul class="list-group">
-              <li ng-repeat="item in items | filter:q" class="animated-item">
+              <li ng-repeat="item in items | filter:q track by $index" class="animated-item">
                   <span classs="h4" ng-bind="( item.Name | uppercase )"></span>
                   <span classs="h4" ng-bind="( item.Enquiry | uppercase )"></span>
               </li>
