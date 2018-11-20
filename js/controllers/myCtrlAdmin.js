@@ -49,7 +49,7 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', '$timeout', 'getAll',
                   var promise4 =  register.registerStudent($scope.register);
                   promise4.then(function(response) {
                     // console.log("result new : ",response.data['success']);
-                    $scope.msg = response.data['success'];
+                    $scope.msg = (response.data['success']) ? response.data['success']: response.data['error'];
                       $timeout(function() {
                         $scope.registerPopup = false;
                         $scope.register = '';
@@ -62,9 +62,14 @@ app.controller('myCtrlAdmin',['$http','$scope', '$filter', '$timeout', 'getAll',
                   });
               }
             }
-              $scope.login = function($location) {
+              $scope.login = function($location,$timeout) {
+
+                     // $scope.msg = (sessionStorage.getItem('msg') == null || sessionStorage.getItem('msg') == undefined )? ' ': sessionStorage.getItem('msg');
+                     // $scope.login = '';
+
                 var promise2 =  getLogin.getLoginUser($scope.login.username, $scope.login.password);
                     promise2.then(function(response) {
+                      // $scope.msg = (sessionStorage.getItem('msg') == null )? ' ': sessionStorage.getItem('msg');
                       // console.log("User checked : ",response.data[0]);
                       // $location.path("/home");
                     }, function(reason) {

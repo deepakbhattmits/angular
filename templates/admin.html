@@ -23,6 +23,7 @@
         </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+              <span ng-bind="( msg )"></span>
         </div>
     </form>
     <div ng-show='show' id='popup' class="forgotPassword">
@@ -35,6 +36,7 @@
             </div>
             <div class="form-actions  text-center">
               <button type="submit" ng-disabled="form1.$invalid" class="btn btn-primary">Fetch Data</button>
+                <span ng-bind="( msg )"></span>
             </div>
           </form>
           <span ng-show='userdetails.username'>
@@ -72,7 +74,7 @@
               <div class="form-group" ng-class="{ 'has-error': form2.cpassword.$dirty && form2.cpassword.$error.required }">
 
                     <input type="text" name="cpassword" id="cpassword" class="form-control" ng-model="register.cpassword" placeholder="Confirm Password" required />
-                    <span ng-show="form2.cpassword.$dirty && form2.cpassword.$error.required" class="help-block">Cinform password is required</span>
+                    <span ng-show="form2.cpassword.$dirty && form2.cpassword.$error.required" class="help-block">confirm password is required</span>
 
               </div>
               <div class="form-actions text-center">

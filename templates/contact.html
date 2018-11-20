@@ -3,11 +3,26 @@
         <h3 class='my_home_name' ng-bind='( page_name | uppercase )'></h3>
 </div>
 
-        <div class='col-sm-7'>
-        <div class='map'>
-            <div id="map-canvas"></div>
+        <div class="col-lg-7" ng-show="checkLogin()">
+          <div class="login-div">
+            <span class="h3">
+              please Login First
+              <a ng-href="#admin">Login</a>
+            </span>
+          </div>
         </div>
-
+        <div class='col-sm-7' ng-show="checkLogout()">
+          <div class='form-group'>
+            <input ng-model="q" id="search" class="form-control" placeholder="Search Comment...">
+          </div>
+          <div class="col-lg-12">
+            <ul class="list-group">
+              <li ng-repeat="item in items | filter:q" class="animated-item">
+                  <span classs="h4" ng-bind="( item.Name | uppercase )"></span>
+                  <span classs="h4" ng-bind="( item.Enquiry | uppercase )"></span>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class='col-sm-5'>
             <form ng-submit="submitFormcntc()" novalidate class="css-form">
@@ -30,4 +45,3 @@
                 </div>
             </form>
         </div>
-  

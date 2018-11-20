@@ -1,6 +1,7 @@
 <?php
 $getData = file_get_contents("php://input");
 $request = json_decode($getData);
+$resp = [];
 include "connection.php";
 mysqli_set_charset($link, "utf8");
 if (!$link) {
@@ -24,7 +25,7 @@ if($result) {
   }
 } else {
   $resp[] = array(
-              'msg' => 'user not found'
+              'msg' => 'Something Went wrong'
             );
 }
 

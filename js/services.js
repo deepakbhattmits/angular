@@ -19,6 +19,13 @@
        }
       }
     });
+    app.service('enquiryService', function($http) {
+        return {
+          enquiryData : function() {
+             return $http.get('api/enquiry.php');
+         }
+        }
+      });
     app.service('getSpecific', function($http) {
         return {
           getSpecificStudent: function(id) {
@@ -52,14 +59,21 @@
 
           $http.post('api/login.php',config)
           .then(function(response){
-             // console.log("data",response.data[0]['FirstName']);
-             if(response.data[0]['FirstName']){
-               $location.path('/home');
-               sessionStorage.setItem("currentUser",response.data[0]['FirstName']);
-               // localStorage.setItem('currentUser', response.data[0]['FirstName']);
-             } else {
-                $location.path('/admin');
-             }
+              console.log("login data :  ",response.data[0]);
+              // if(response.data[0] == undefined) {
+              //   sessionStorage.setItem("msg",'wrong credentials);
+              //   $location.path('/admin');
+              // } else {
+                if(response.data[0]['FirstName']){
+                  $location.path('/home');
+                  sessionStorage.setItem("currentUser",response.data[0]['FirstName']);
+                  // localStorage.setItem('currentUser', response.data[0]['FirstName']);
+                } else {
+                   $location.path('/admin');
+                }
+
+            //  }
+
           })
           .catch(function(response){
             // console.log(response.status);
