@@ -12,17 +12,25 @@ app.controller('myCtrlCart',['$http','$scope', '$filter', function ($http, $scop
    $scope.cart_UpdatedPrice = 'updated price';
    $scope.cart_buy = 'buy now';
    $scope.cart_remove = 'remove';
+   $scope.msg = '';
     $http.get("api/new_php.php").then(function (response) {
-        $scope.mycart = response.data;
-           for (var i = 0; i < response.data.length; i ++) {
-               // console.log(response.data[i]);
-               $scope.data.push({  'id':response.data[i].id,
-                   'name':response.data[i].name,
-                   'price':response.data[i].price,
-                   'qty':response.data[i].qty,
-                   'upprice':response.data[i].upprice
-           });
-       }
+    // console.log("test:",response.data);
+        if(response.data == '') {
+          // console.log("DATA : ",response.data[0]['data']);
+          $scope.msg = 'No Cart Data';
+        } else {
+          $scope.mycart = response.data;
+          for (var i = 0; i < response.data.length; i ++) {
+              // console.log(response.data[i]);
+              $scope.data.push({  'id':response.data[i].id,
+                  'name':response.data[i].name,
+                  'price':response.data[i].price,
+                  'qty':response.data[i].qty,
+                  'upprice':response.data[i].upprice
+          });
+      }
+        }
+
    });
     $scope.getData = function () {
      return $filter('filter')($scope.data, $scope.q)

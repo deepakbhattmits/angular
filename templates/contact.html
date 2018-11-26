@@ -16,12 +16,12 @@
             <label for="search" > Search here </label>
             <input ng-model="q" id="search" class="form-control" placeholder="Search Comment...">
           </div>
-          <div class="col-lg-12">
+          <div class="col-lg-12 enQuiry-page">
             <span ng-bind='( msg | uppercase )'></span>
-            <ul class="list-group">
-              <li ng-repeat="item in items | filter:q track by $index" class="animated-item">
-                  <span classs="h4" ng-bind="( item.Name | uppercase )"></span>
-                  <span classs="h4" ng-bind="( item.Enquiry | uppercase )"></span>
+            <ul class="list-unstyled">
+              <li ng-repeat="item in items | filter:q track by $index" class="col-lg-6 col-sm-6 animated-item">
+                  <p class="h3 text-primary" ng-bind="( item.Name | capitalize )"></p>
+                  <p class="h5 text-info" ng-bind="( item.Enquiry | capitalize )"></p>
               </li>
             </ul>
           </div>

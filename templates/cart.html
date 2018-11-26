@@ -26,7 +26,8 @@
     </div>
 </div>
     <div class='col-sm-9 col-xs-12'>
-       <div class='table-responsive'>
+      <span class="h3" ng-bind="( msg | uppercase )"></span>
+       <div class='table-responsive' ng-hide="msg">
     <table class='table'>
         <tr>
             <th style='padding:10px;' ng-bind='(cart_id | uppercase)'></th>
@@ -38,14 +39,13 @@
             <th style='padding:10px;' ng-bind='(cart_remove | uppercase)'></th>
             <td colspan='6' ng-bind='(mycart_empty | uppercase )'></td>
         </tr>
-        <tr ng-repeat='cart in mycart | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize'>
+        <tr ng-repeat='cart in mycart | filter:query | startFrom:currentPage*pageSize | limitTo:pageSize track by $index'>
             <td style='padding:10px;' ng-bind='(cart.id)'></td>
             <td style='padding:10px;' ng-bind='(cart.name | uppercase)'></td>
             <td style='padding:10px;' ng-bind='(cart.price | uppercase)' ng-modal='price'></td>
-            <td colspan='2' style='padding:10px;' ng-bind='( cart.qty | uppercase )' >
-            </td>
+            <td colspan='2' style='padding:10px;' ng-bind='( cart.qty | uppercase )' ></td>
             <td style='padding:10px;' ng-bind='(cart.upprice | uppercase)'></td>
-             <td style='padding:10px;' ><button ng-click='cart_prodbuy_btn(cart.id,cart.name,cart.price,cart.qty,cart.upprice)'>BUY</button></td>
+            <td style='padding:10px;' ><button ng-click='cart_prodbuy_btn(cart.id,cart.name,cart.price,cart.qty,cart.upprice)'>BUY</button></td>
             <td style='padding:10px;' ><button ng-click='cart_remove_btn(cart.id)'>Remove</button></td>
         </tr>
     </table>

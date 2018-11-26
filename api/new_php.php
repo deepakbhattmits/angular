@@ -1,7 +1,7 @@
 <?php
 $getData = file_get_contents("php://input");
 $request = json_decode($getData);
-$data_selected = array();
+$resp = array();
 include "connection.php";
 // $link = mysqli_connect('localhost', 'root', '' ,'angdb');
 mysqli_set_charset($link, "utf8");
@@ -10,6 +10,7 @@ if (!$link) {
 }
 $sql2 = "SELECT * FROM carttable";
 $result2 = mysqli_query($link,$sql2);
+ // echo 'TEST'.mysqli_fetch_assoc($result2);die();
 while($rowc = mysqli_fetch_assoc($result2)){
 	$resp[] = array(
 							'id' => $rowc['Pid'],
