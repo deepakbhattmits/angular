@@ -23,6 +23,7 @@ $fname = isset($fname) ? $fname : '';
 $lname = isset($lname) ? $lname : '';
 $uname = isset($uname) ? $uname : '';
 $pwd = isset($pwd) ? $pwd : '';
+$status = 'active';
 //$link = mysqli_connect('localhost', 'root', '' ,'angdb');
 // echo 'TEST DATA : '.$fname.'--'.$lname.'--'.$uname.'--'.$pwd;die();
 include "connection.php";
@@ -35,7 +36,7 @@ $res_u = mysqli_query($link, $sql_u);
 if(mysqli_num_rows($res_u) > 0){
   $status['error'] = "UserName Already Taken ... ";
 } else {
-  $sql = "INSERT INTO users (username, FirstName, LastName, password) VALUES  ('".$uname."','".$fname."','".$lname."','".$pwd."')";
+  $sql = "INSERT INTO users (username, FirstName, LastName, password, status) VALUES  ('".$uname."','".$fname."','".$lname."','".$pwd."','".$status."')";
   $res = mysqli_query($link,$sql);
   if ($res) {
     $status['success'] = "Record Submitted Successfully";
